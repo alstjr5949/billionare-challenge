@@ -40,9 +40,9 @@ interface Person {
 export default async function PersonPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const person: Person = await getPerson(params.id);
+  const person: Person = await getPerson((await params).id);
 
   return (
     <div className={styles.personContainer}>
